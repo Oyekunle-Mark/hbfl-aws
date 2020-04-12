@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-1' });
 
 // Declare local variables
-const s3 = AWS.S3();
+const s3 = new AWS.S3();
 
 createBucket('hamster-bucket-chief').then((data) => console.log(data));
 
