@@ -19,7 +19,7 @@ function createAutoScalingGroup(asgName, lcName) {
   const params = {
     AutoScalingGroupName: asgName,
     AvailabilityZones: ['us-east-1a', 'us-east-1b'],
-    TargetGroupArns: [tgArn],
+    TargetGroupARNs: [tgArn],
     LaunchConfigurationName: lcName,
     MaxSize: 2,
     MinSize: 1,
@@ -42,7 +42,7 @@ function createASGPolicy(asgName, policyName) {
     TargetTrackingConfiguration: {
       TargetValue: 5,
       PredefinedMetricSpecification: {
-        PredefinedMetricType: 'ASCAverageCPUUtilization',
+        PredefinedMetricType: 'ASGAverageCPUUtilization',
       },
     },
   };
