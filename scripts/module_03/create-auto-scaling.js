@@ -34,5 +34,26 @@ function createAutoScalingGroup(asgName, lcName) {
 }
 
 function createASGPolicy(asgName, policyName) {
-  // TODO: Create an auto scaling group policy
+  const params = {
+    AdjustmentType: 'ChangeInCapacity',
+    AutoScalingGroupName: asgName,
+    PolicyName: policyName,
+    PolicyType: 'TargetTrackingScaling',
+    TargetTrackingConfiguration: {
+      TargetValue: 5,
+      PredefinedMetricSpecification: {
+        PredefinedMetricType: 'ASCAverageCPUUtilization',
+      },
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    autoScaling.putScalingPolicy(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
 }
