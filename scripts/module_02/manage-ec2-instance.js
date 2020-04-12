@@ -19,9 +19,20 @@ function listInstances() {
 }
 
 function terminateInstance(instanceId) {
-  // TODO: Terminate an instance with a given instanceId
+  const params = {
+    InstanceIds: [instanceId],
+  };
+
+  return new Promise((resolve, reject) => {
+    ec2.terminateInstances(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
 }
 
-listInstances().then((data) => console.log(data));
-// terminateInstance('i-08038214840423919')
-// .then(data => console.log(data))
+// listInstances().then((data) => console.log(data));
+terminateInstance('i-08038214840423919').then((data) => console.log(data));
