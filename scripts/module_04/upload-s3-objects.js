@@ -27,7 +27,7 @@ function uploadS3Objects(bucketName, files) {
     });
 
     return new Promise((resolve, reject) => {
-      s3.putObject(params, (err, data) => {
+      s3.putObject(newParams, (err, data) => {
         if (err) reject(err);
         else resolve(data);
       });
