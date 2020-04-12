@@ -79,3 +79,7 @@ function createListener(tgArn, lbArn) {
     });
   });
 }
+
+/**
+ * Target Group Name ARN: arn:aws:elasticloadbalancing:us-east-1:188714396569:targetgroup/hamsterTG/5c854a8a6e5ab2e7
+ */
