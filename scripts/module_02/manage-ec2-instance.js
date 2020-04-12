@@ -12,7 +12,7 @@ function listInstances() {
       if (err) {
         reject(err);
       } else {
-        resolve(data);
+        resolve(data.Reservations.reduce((i, r) => i.concat(r.Instances)));
       }
     });
   });
