@@ -12,7 +12,7 @@ function listInstances() {
       if (err) {
         reject(err);
       } else {
-        resolve(data.Reservations.reduce((i, r) => i.concat(r.Instances)));
+        resolve(data.Reservations.reduce((i, r) => i.concat(r.Instances), []));
       }
     });
   });
@@ -23,5 +23,5 @@ function terminateInstance(instanceId) {
 }
 
 listInstances().then((data) => console.log(data));
-// terminateInstance()
+// terminateInstance('i-08038214840423919')
 // .then(data => console.log(data))
