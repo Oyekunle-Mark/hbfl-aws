@@ -6,8 +6,8 @@ AWS.config.update({ region: 'us-east-1' });
 
 // Declare local variables
 const ec2 = new AWS.EC2();
-const sgName = 'hamster_sg';
-const keyName = 'hamster_key';
+const sgName = 'hamster_sg2';
+const keyName = 'hamster_key2';
 
 // Do all the things together
 createSecurityGroup(sgName)
@@ -91,14 +91,14 @@ function createKeyPair(keyName) {
 
 function createInstance(sgName, keyName) {
   const params = {
-    ImageId: 'ami-0323c3dd2da7fb37d',
+    ImageId: 'ami-00e96852d4b9e011a',
     InstanceType: 't2.micro',
     KeyName: keyName,
     MinCount: 1,
     MaxCount: 1,
     SecurityGroups: [sgName],
     UserData:
-      'IyEvYmluL2Jhc2gNCmN1cmwgLS1zaWxlbnQgLS1sb2NhdGlvbiBodHRwczovL3JwbS5ub2Rlc291cmNlLmNvbS9zZXR1cF8xMi54IHwgc3VkbyBiYXNoIC0NCnN1ZG8geXVtIGluc3RhbGwgLXkgbm9kZWpzDQpzdWRvIHl1bSBpbnN0YWxsIC15IGdpdA0KZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9yeWFubXVyYWthbWkvaGJmbC5naXQNCmNkIGhiZmwNCm5wbSBpDQpucG0gcnVuIHN0YXJ0',
+      'IyEvYmluL2Jhc2gNCnN1ZG8gYXB0LWdldCB1cGRhdGUNCnN1ZG8gYXB0LWdldCAteSBpbnN0YWxsIGdpdA0KZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9yeWFubXVyYWthbWkvaGJmbC5naXQgL2hvbWUvYml0bmFtaS9oYmZsDQpjaG93biAtUiBiaXRuYW1pOiAvaG9tZS9iaXRuYW1pL2hiZmwNCmNkIC9ob21lL2JpdG5hbWkvaGJmbA0Kc3VkbyBucG0gaQ0Kc3VkbyBucG0gcnVuIHN0YXJ0',
   };
 
   return new Promise((resolve, reject) => {
