@@ -52,7 +52,7 @@ function getRootResource(api) {
   };
 
   return new Promise((resolve, reject) => {
-    apiG.getRootResources(params, (err, data) => {
+    apiG.getResources(params, (err, data) => {
       if (err) {
         reject(err);
       } else {
