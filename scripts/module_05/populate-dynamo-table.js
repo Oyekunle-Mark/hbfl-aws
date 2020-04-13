@@ -19,7 +19,7 @@ function populateTable(tableName, data) {
     RequestItems: {
       [tableName]: data.map((item) => {
         return {
-          putRequest: {
+          PutRequest: {
             Item: item,
           },
         };
