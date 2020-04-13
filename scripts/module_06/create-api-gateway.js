@@ -101,9 +101,22 @@ function createResourceMethod(resourceId, method, api, path) {
 }
 
 function createMethodIntegration(resourceId, method, api, path) {
-  // TODO: Create params const
+  const params = {
+    httpMethod: method,
+    resourceId: resourceId,
+    restApiId: api.id,
+    integrationHttpMethod: method,
+    type: 'HTTP_PROXY',
+    uri: 'http://hamsterELB-1996297800.us-east-1.elb.amazonaws.com',
+  };
 
   return new Promise((resolve, reject) => {
-    // TODO: Put the integration and return the resourceId argument
+    apiG.putIntegration(params, (err) => {
+      if (err) {
+        reject;
+      } else {
+        resolve(resourceId);
+      }
+    });
   });
 }
