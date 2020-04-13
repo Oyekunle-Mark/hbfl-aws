@@ -64,10 +64,20 @@ function getRootResource(api) {
 }
 
 function createResource(parentResourceId, resourcePath, api) {
-  // TODO: Create params const
+  const params = {
+    parentId: parentResourceId,
+    pathPath: resourcePath,
+    restApiId: api.id,
+  };
 
   return new Promise((resolve, reject) => {
-    // TODO: Create the resource and return the resource id
+    apiG.createResource(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data.id);
+      }
+    });
   });
 }
 
