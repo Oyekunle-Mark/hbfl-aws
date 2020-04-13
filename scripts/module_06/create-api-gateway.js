@@ -56,7 +56,7 @@ function getRootResource(api) {
       if (err) {
         reject(err);
       } else {
-        const rootResource = data.Items.find((r) => r.path === '/');
+        const rootResource = data.items.find((r) => r.path === '/');
         resolve(rootResource.id);
       }
     });
@@ -66,7 +66,7 @@ function getRootResource(api) {
 function createResource(parentResourceId, resourcePath, api) {
   const params = {
     parentId: parentResourceId,
-    pathPath: resourcePath,
+    pathPart: resourcePath,
     restApiId: api.id,
   };
 
