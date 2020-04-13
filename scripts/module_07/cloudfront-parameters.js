@@ -12,9 +12,30 @@ function origins(bucketName) {
     ],
   };
 }
+
 function defaultCacheBehavior(bucketName) {
   return {
-    // TODO: Add properties for DefaultCacheBehavior
+    ForwardedValues: {
+      Cookies: {
+        Forward: 'none',
+      },
+      QueryString: false,
+    },
+    MinTTL: 0,
+    TargetOriginId: `${bucketName}_origin`,
+    TrustedSigners: {
+      Quantity: 0,
+      Enabled: false,
+    },
+    ViewerProtocolPolicy: 'redirect-to-https',
+    AllowedMethods: {
+      Quantity: 2,
+      Items: ['GET', 'HEAD'],
+      CachedMethods: {
+        Quantity: 2,
+        Items: ['GET', 'HEAD'],
+      },
+    },
   };
 }
 
