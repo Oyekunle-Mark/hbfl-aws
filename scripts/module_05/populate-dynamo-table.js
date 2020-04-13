@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 AWS.config.update({ region: 'us-east-1' });
 
 // Declare local variables
-const client = AWS.DynamoDB.DocumentClient();
+const client = new AWS.DynamoDB.DocumentClient();
 
 helpers
   .getHamsterData()
@@ -20,7 +20,7 @@ function populateTable(tableName, data) {
       [tableName]: data.map((item) => {
         return {
           putRequest: {
-            Item,
+            Item: item,
           },
         };
       }),
