@@ -82,10 +82,21 @@ function createResource(parentResourceId, resourcePath, api) {
 }
 
 function createResourceMethod(resourceId, method, api, path) {
-  // TODO: Create params const
+  const params = {
+    authorizationType: 'NONE',
+    httpMethod: method,
+    resourceId: resourceId,
+    restApiId: api.id,
+  };
 
   return new Promise((resolve, reject) => {
-    // TODO: Put the method and return the resourceId argument
+    apiG.putMethod(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(resourceId);
+      }
+    });
   });
 }
 
