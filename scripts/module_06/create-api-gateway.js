@@ -32,7 +32,7 @@ createRestApi(apiName)
 
 function createRestApi(apiName) {
   const params = {
-    Name: apiName,
+    name: apiName,
   };
 
   return new Promise((resolve, reject) => {
@@ -47,10 +47,19 @@ function createRestApi(apiName) {
 }
 
 function getRootResource(api) {
-  // TODO: Create params const
+  const params = {
+    restApiId: api.id,
+  };
 
   return new Promise((resolve, reject) => {
-    // TODO: Get the resources and find the resource with path '/'
+    apiG.getRootResources(params, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const rootResource = data.Items.find((r) => r.path === '/');
+        resolve(rootResource.id);
+      }
+    });
   });
 }
 
