@@ -4,7 +4,7 @@ const helpers = require('./helpers');
 
 AWS.config.update({ region: 'us-east-1' });
 
-const ec2 = new AWS.ElastiCache();
+const ec = new AWS.ElastiCache();
 
 helpers
   .createSecurityGroup('hamster_redis_sg', 6379)
