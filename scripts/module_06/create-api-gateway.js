@@ -89,6 +89,12 @@ function createResourceMethod(resourceId, method, api, path) {
     restApiId: api.id,
   };
 
+  if (path) {
+    params.requestParameters = {
+      [`method.request.path.${path}`]: true,
+    };
+  }
+
   return new Promise((resolve, reject) => {
     apiG.putMethod(params, (err, data) => {
       if (err) {
@@ -109,6 +115,13 @@ function createMethodIntegration(resourceId, method, api, path) {
     type: 'HTTP_PROXY',
     uri: 'http://hamsterELB-1996297800.us-east-1.elb.amazonaws.com',
   };
+
+  if (path) {
+    params.uri += `/{${path}}`;
+    params.requestParameters = {
+      [`integration.request.path.${path}`]: `method.request.path.${path}`,
+    };
+  }
 
   return new Promise((resolve, reject) => {
     apiG.putIntegration(params, (err) => {
