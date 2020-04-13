@@ -3,7 +3,7 @@ function origins(bucketName) {
     Quantity: 1,
     Items: [
       {
-        Domain: `${bucketName}.s3.amazonaws.com`,
+        DomainName: `${bucketName}.s3.amazonaws.com`,
         Id: `${bucketName}_origin`,
         S3OriginConfig: {
           OriginAccessIdentity: '',
